@@ -4,6 +4,16 @@ const sass = require("gulp-sass");
 const sourcemaps = require("gulp-sourcemaps");
 const vue = require("./plugins/gulp-vue");
 
+
+const CopyToLib = function () {
+    return src([
+        './node_modules/vue/dist/vue.min.js',
+        './node_modules/vue-router/dist/vue-router.min.js',
+        './node_modules/vuex/dist/vuex.min.js',
+        './lib/*'
+    ]).pipe(dest("./dist/lib"));
+}
+
 const VueBuild = function () {
     return src("./src/**/*.vue")
         .pipe(vue({}).on("error", vue.logError))
@@ -29,6 +39,7 @@ exports.vue = VueBuild;
 exports.sass = SassBuild;
 exports.watch = WatchBuild;
 
+exports.copy = CopyToLib;
 
 
 
