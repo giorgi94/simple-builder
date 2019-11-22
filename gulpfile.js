@@ -1,6 +1,6 @@
 const { src, dest, series, parallel, watch } = require("gulp");
 
-const rename = require("gulp-rename");
+// const rename = require("gulp-rename");
 const sass = require("gulp-sass");
 const sourcemaps = require("gulp-sourcemaps");
 const babel = require("gulp-babel");
@@ -30,9 +30,15 @@ const JsBuild = function () {
 
 const VueBuild = function () {
     return src("./src/**/*.vue")
+        .pipe(sourcemaps.init())
         .pipe(vue({}).on("error", vue.logError))
-        .pipe(dest("./dist/js"));
+        .pipe(babel())
+        .pipe(terser())
+        .pipe(rjs())
+        .pipe(sourcemaps.write("./maps"))
+        .pipe(dest("./dist/bundles"));
 };
+
 
 const SassBuild = function () {
     return src("./assets/sass/main.sass")
@@ -47,6 +53,7 @@ const SassBuild = function () {
 const WatchBuild = function () {
     watch("./assets/sass/**/*.sass", series("sass"));
     watch("./src/**/*.vue", series("vue"));
+    watch("./src/**/*.js", series("js"));
 };
 
 exports.js = JsBuild;
@@ -58,4 +65,4 @@ exports.copy = CopyToLib;
 
 
 
-exports.default = parallel(JsBuild, SassBuild);
+exports.default = parallel(JsBuild, VueBuild, SassBuild);

@@ -4,11 +4,14 @@
 
 
 <script>
-export default {
+module.exports = {
     data() {
         return {
             msg: "hello world"
         };
+    },
+    mounted() {
+        console.log("hey");
     }
 };
 </script>

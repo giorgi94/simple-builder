@@ -11,24 +11,28 @@
 <body>
 
 
+    <div id="app"></div>
+
+
+
     <script src="/static/lib/axios.min.js"></script>
-    <script src="/static/lib/vue.min.js"></script>
+
+    <!-- <script src="/static/lib/vue.min.js"></script>
+    <script src="/static/lib/vuex.min.js"></script>
+    <script src="/static/lib/vue-router.min.js"></script> -->
+
     <script src="/static/lib/require.min.js"></script>
+
 
     <script>
         require.config({
-            baseUrl: "/static"
+            baseUrl: "/static",
         })
 
 
-        require(['bundles/app'])
-
-
-
-        // require(['js/main', 'js/test'], (main, test) => {
-        //     console.log(test.func(4))
-        //     console.log(main.func(5))
-        // })
+        require([
+            'bundles/index'
+        ])
     </script>
 
 
