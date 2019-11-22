@@ -3,9 +3,9 @@ const through = require("through2");
 const path = require("path");
 const transform = require("./transform");
 
-const PLUGIN_NAME = "gulp-vue";
+const PLUGIN_NAME = "gulp-requirejs";
 
-const gulpVue = (options, sync) => through.obj((file, enc, cb) => {
+const gulpRequirejs = (options, sync) => through.obj((file, enc, cb) => {
     if (file.isNull()) {
         return cb(null, file);
     }
@@ -17,9 +17,6 @@ const gulpVue = (options, sync) => through.obj((file, enc, cb) => {
     if (path.basename(file.path).indexOf("_") === 0) {
         return cb();
     }
-
-    file.basename = file.basename.replace(".vue", ".js");
-
 
 
     if (!file.contents.length) {
@@ -39,19 +36,19 @@ const gulpVue = (options, sync) => through.obj((file, enc, cb) => {
 });
 
 
-gulpVue.sync = options => gulpVue(options, true);
+gulpRequirejs.sync = options => gulpRequirejs(options, true);
 
-gulpVue.logError = function logError(error) {
+gulpRequirejs.logError = function logError(error) {
     let message = "";
 
     if (typeof error === "string") {
-        message = new PluginError("vue", error).toString();
+        message = new PluginError("requirejs", error).toString();
     } else {
-        message = new PluginError("vue", error.message).toString();
+        message = new PluginError("requirejs", error.message).toString();
     }
     process.stderr.write(`${message}\n`);
     this.emit("end");
 };
 
 
-module.exports = gulpVue;
+module.exports = gulpRequirejs;

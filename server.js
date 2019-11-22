@@ -9,6 +9,8 @@ const PORT = process.env.PORT || 3000;
 server.set("view engine", "ejs");
 server.set("views", path.join(__dirname, "templates"));
 
+server.use('/static', express.static('dist'))
+
 server.get("/", (req, res) => {
     res.render("index")
 });

@@ -19,7 +19,8 @@ module.exports = {
     ],
     globals: {
         $root: true,
-        $config: true
+        $config: true,
+        define: true
     },
     rules: {
         "vue/html-indent": ["error", 4, {

@@ -39,12 +39,32 @@ const transform = (vuetemplate) => {
     let script_module = script_template.match(/module.exports\s*=\s*\{/)[0];
 
     script_template = script_template
-        .replace(script_module, script_module + "\n    template,");
+        .replace(script_module, script_module + `\n    template: \`${template}\`,`);
 
-    let result = `const template = \`${template}\`;\n\n\n` + script_template;
+    // let result = `const template = \`${template}\`;\n\n\n` + script_template;
 
-    return result;
+    return script_template;
 };
+
+/*
+let a = transform(`
+<template>
+    <div>{{ msg }}</div>
+</template>
+
+
+<script>
+module.exports = {
+    data() {
+        return {
+            msg: "hello world"
+        };
+    }
+};
+</script>
+`);
+console.log(a);
+*/
 
 
 module.exports = transform;
