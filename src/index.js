@@ -1,28 +1,30 @@
-
-const Vue = require("lib/vue.min");
+/* globals Vue createStore, createRouter */
 const App = require("./App");
 
 
+gulpInclude("../includes/store/index");
+gulpInclude("../includes/router/index");
+
 
 function createApp() {
-    // const router = createRouter();
-    // const store = createStore();
+    const router = createRouter();
+    const store = createStore();
 
     const app = new Vue({
         el: "#app",
-        // store,
-        // router,
+        store,
+        router,
         render: h => h(App)
     });
 
     return {
         app,
-        // router,
-        // store
+        router,
+        store
     };
 }
 
 
-const { app } = createApp();
+const { app, router, store } = createApp();
 
-console.log(app);
+window.app = app;

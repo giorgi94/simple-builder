@@ -7,6 +7,7 @@ const babel = require("gulp-babel");
 const terser = require("gulp-terser");
 const vue = require("./plugins/gulp-vue");
 const rjs = require("./plugins/gulp-requirejs");
+const inc = require("./plugins/gulp-include");
 
 
 const CopyToLib = function () {
@@ -20,6 +21,7 @@ const CopyToLib = function () {
 
 const JsBuild = function () {
     return src("./src/**/*.js")
+        .pipe(inc())
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(terser())

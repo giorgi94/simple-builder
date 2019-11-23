@@ -12,6 +12,8 @@ const transform = (content) => {
         return `define(function (require, exports, module){${content}});`;
     }
 
+    return content;
+
 };
 
 
