@@ -1,4 +1,4 @@
-/* globals Vue createStore, createRouter */
+/* globals Vue createStore createRouter */
 const App = require("./App");
 
 

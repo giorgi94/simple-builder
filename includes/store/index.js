@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 function createStore() {
-    console.log("hey");
+
     return new Vuex.Store({
         strict: false,
         state: {

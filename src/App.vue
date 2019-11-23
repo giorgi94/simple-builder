@@ -1,17 +1,16 @@
 <template>
-    <div>{{ msg }}</div>
+    <div id="app">{{ msg }}</div>
 </template>
-
 
 <script>
 module.exports = {
     data() {
         return {
-            msg: "hello world"
+            msg: "hey"
         };
     },
-    mounted() {
-        console.log("hey");
+    methods: {
+
     }
 };
 </script>

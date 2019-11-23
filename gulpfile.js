@@ -12,9 +12,10 @@ const inc = require("./plugins/gulp-include");
 
 const CopyToLib = function () {
     return src([
-        "./node_modules/vue/dist/vue.min.js",
-        "./node_modules/vue-router/dist/vue-router.min.js",
-        "./node_modules/vuex/dist/vuex.min.js",
+        // "./node_modules/vue/dist/vue.min.js",
+        // "./node_modules/vue-router/dist/vue-router.min.js",
+        // "./node_modules/vuex/dist/vuex.min.js",
+        // "./node_modules/bootstrap-vue/dist/bootstrap-vue.min.js",
         "./lib/*"
     ]).pipe(dest("./dist/lib"));
 };
@@ -56,6 +57,7 @@ const WatchBuild = function () {
     watch("./assets/sass/**/*.sass", series("sass"));
     watch("./src/**/*.vue", series("vue"));
     watch("./src/**/*.js", series("js"));
+    watch("./includes/**/*.js", series("js"));
 };
 
 exports.js = JsBuild;
